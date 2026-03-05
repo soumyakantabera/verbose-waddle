@@ -1540,7 +1540,7 @@
   <!-- ============================================================
        NEWSLETTER / CONTATTI
   ============================================================ -->
-  <section class="contatti" id="contatti" aria-labelledby="contatsTitle">
+  <section class="contatti" id="contatti" aria-labelledby="contattiTitle">
     <div class="newsletter-inner">
       <div class="newsletter-image">
         <img src="./images/unisciti_journal.jpg" alt="Unisciti alla comunità FIORIVIA" loading="lazy" />
@@ -1549,7 +1549,7 @@
         </div>
       </div>
       <div class="newsletter-form-side">
-        <h2 id="contatsTitle">Rimani Aggiornata</h2>
+        <h2 id="contattiTitle">Rimani Aggiornata</h2>
         <p>Iscriviti alla nostra newsletter per ricevere consigli di bellezza, novità sui prodotti e offerte esclusive direttamente nella tua casella di posta.</p>
         <form id="newsletterForm" novalidate>
           <div class="form-group">
@@ -1785,7 +1785,8 @@
           var email   = document.getElementById('formEmail');
           var privacy = document.getElementById('privacyCheck');
 
-          if (!email.value || !email.value.includes('@')) {
+          var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email.value || !emailRegex.test(email.value)) {
             email.focus();
             email.style.borderColor = '#c0392b';
             return;
