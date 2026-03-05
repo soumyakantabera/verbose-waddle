@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagina non trovata — FIORIVIA</title>
+  <meta http-equiv="refresh" content="0; url=/" />
+  <script>
+    // Redirect to the home page, preserving the path as a query parameter
+    // so client-side routing can handle it if needed.
+    var path = window.location.pathname;
+    var search = window.location.search;
+    var hash = window.location.hash;
+    var redirect = '/' + (path && path !== '/' ? '?redirect=' + encodeURIComponent(path + search + hash) : '');
+    window.location.replace(redirect);
+  </script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #faf8f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      color: #1a1a2e;
+      padding: 1rem;
+    }
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      margin-bottom: 1rem;
+      color: #2d5016;
+    }
+    p {
+      font-size: 1rem;
+      color: #555;
+    }
+    a {
+      color: #c8956c;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>FIORIVIA</h1>
+    <p>Pagina non trovata. Reindirizzamento in corso…</p>
+    <p>Se il reindirizzamento non avviene, <a href="/">torna alla home</a>.</p>
+  </div>
+</body>
+</html>
