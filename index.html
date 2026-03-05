@@ -1288,6 +1288,32 @@
     .skip-nav:focus {
       top: 12px;
     }
+
+    /* Utility classes */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .btn-nav {
+      padding: 10px 24px;
+      font-size: 0.78rem;
+    }
+
+    .section-label-light {
+      color: var(--gold);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    .mt-md {
+      margin-top: 16px;
+    }
   </style>
 </head>
 <body>
@@ -1306,7 +1332,7 @@
           <li><a href="#journal">Journal</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contact" class="btn btn-dark" style="padding:10px 24px; font-size:0.78rem;">Newsletter</a></li>
+          <li><a href="#contact" class="btn btn-dark btn-nav">Newsletter</a></li>
         </ul>
         <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
           <span></span>
@@ -1526,11 +1552,11 @@
     <section class="future-line" id="future">
       <div class="container">
         <div class="reveal">
-          <p class="section-label" style="color: var(--gold);">Coming Soon</p>
+          <p class="section-label section-label-light">Coming Soon</p>
           <h2>The Future FIORIVIA Line</h2>
           <p>We're developing our own line of essentials — formulated in Italy with the same rigorous criteria we apply to every product we select. Transparent formulas, effective concentrations, honest pricing.</p>
           <p>Built on everything we've learned from studying thousands of products and listening to what your skin truly needs.</p>
-          <a href="#contact" class="btn btn-primary" style="margin-top: 16px;">Get Early Access</a>
+          <a href="#contact" class="btn btn-primary mt-md">Get Early Access</a>
         </div>
       </div>
     </section>
@@ -1666,11 +1692,11 @@
         <img src="./images/unisciti_journal.jpg" alt="Join the FIORIVIA community" loading="lazy">
       </div>
       <div class="newsletter-content reveal">
-        <p class="section-label" style="color: var(--gold); text-shadow: 0 1px 3px rgba(0,0,0,0.4);">Stay Connected</p>
+        <p class="section-label section-label-light">Stay Connected</p>
         <h2>Join the FIORIVIA Journal</h2>
         <p>Ingredient deep-dives, new product reviews, and honest beauty insights — delivered to your inbox. No spam, just substance.</p>
         <form class="newsletter-form" id="newsletterForm">
-          <label for="newsletter-email" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Email address</label>
+          <label for="newsletter-email" class="sr-only">Email address</label>
           <input type="email" id="newsletter-email" name="email" placeholder="Your email address" required autocomplete="email">
           <button type="submit">Subscribe</button>
         </form>
@@ -1858,7 +1884,7 @@
           var btn = form.querySelector('button');
           var originalText = btn.textContent;
 
-          btn.textContent = 'Subscribed \u2713';
+          btn.textContent = 'Subscribed \u2713'; // checkmark
           btn.style.background = 'var(--teal)';
           input.value = '';
 
