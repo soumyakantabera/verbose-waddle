@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagina non trovata — FIORIVIA</title>
+  <script>
+    // Redirect to the root of the site (works regardless of repo/domain name)
+    sessionStorage.redirect = location.href;
+    // Navigate up to the root path dynamically
+    var pathParts = location.pathname.split('/').filter(Boolean);
+    // On GitHub Pages the first segment is the repo name; navigate to site root
+    var root = location.origin + (pathParts.length > 0 ? '/' + pathParts[0] + '/' : '/');
+    location.replace(root);
+  </script>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: #faf8f5;
+      color: #1a1a2e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    .message { padding: 2rem; }
+    h1 { font-size: 2rem; margin-bottom: 1rem; }
+    p { color: #555; margin-bottom: 1.5rem; }
+    a {
+      color: #2d5016;
+      text-decoration: none;
+      border-bottom: 1px solid #2d5016;
+    }
+  </style>
+</head>
+<body>
+  <div class="message">
+    <h1>FIORIVIA</h1>
+    <p>Pagina non trovata. Reindirizzamento in corso…</p>
+    <p><a href="./">Torna alla home</a></p>
+  </div>
+</body>
+</html>

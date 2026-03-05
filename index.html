@@ -1,13 +1,1819 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FIORIVIA - Italian Wellness</title>
-    <script type="module" crossorigin src="./assets/index--4vLQNQo.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-B1nXdYFq.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIORIVIA — Italian Wellness</title>
+  <meta name="description" content="FIORIVIA — Formulazioni artigianali di bellezza ispirate alla tradizione italiana. Scopri la nostra collezione di skincare, body care e benessere naturale." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #faf8f5;
+      color: #1a1a2e;
+      overflow-x: hidden;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    body.loaded {
+      opacity: 1;
+    }
+
+    p, h1, h2, h3, h4, h5, h6, span, a {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ============================================================
+       CONTAINER & SECTION
+    ============================================================ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding: 60px 0;
+      }
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ============================================================
+       CARDS
+    ============================================================ */
+    .card {
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      background: white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    /* ============================================================
+       GRID
+    ============================================================ */
+    .grid-auto {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 640px) {
+      .grid-auto {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .grid-auto {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .btn-outline-white {
+      border: 2px solid white;
+      color: white;
+      background: transparent;
+    }
+
+    .btn-outline-white:hover {
+      background: white;
+      color: #1a1a2e;
+    }
+
+    .btn-primary {
+      background: #2d5016;
+      color: white;
+      border: 2px solid #2d5016;
+    }
+
+    .btn-primary:hover {
+      background: #3d6a1f;
+      border-color: #3d6a1f;
+    }
+
+    .btn-accent {
+      background: #c8956c;
+      color: white;
+      border: 2px solid #c8956c;
+    }
+
+    .btn-accent:hover {
+      background: #b8845b;
+      border-color: #b8845b;
+    }
+
+    /* ============================================================
+       SECTION TITLES
+    ============================================================ */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: #1a1a2e;
+      text-align: center;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #555555;
+      font-size: 1.05rem;
+      margin-bottom: 56px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c8956c;
+      margin-bottom: 12px;
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(250, 248, 245, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: box-shadow 0.3s ease;
+      height: 70px;
+    }
+
+    .nav.scrolled {
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2d5016;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #1a1a2e;
+      letter-spacing: 0.05em;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      right: 0;
+      height: 1.5px;
+      background: #2d5016;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #2d5016;
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      gap: 5px;
+      padding: 0;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #1a1a2e;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(250, 248, 245, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        z-index: 999;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        font-size: 1.3rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 10vh;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.75) 0%,
+        rgba(0,0,0,0.30) 50%,
+        rgba(0,0,0,0.10) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+      padding: 0 24px;
+    }
+
+    .hero-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 900;
+      color: white;
+      letter-spacing: 0.15em;
+      line-height: 1;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 12px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+    }
+
+    .hero-subtext {
+      font-size: clamp(0.85rem, 1.5vw, 1rem);
+      color: rgba(255,255,255,0.75);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease 0.6s, transform 0.8s ease 0.6s;
+    }
+
+    .hero-link {
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: gap 0.3s ease;
+    }
+
+    .hero-link:hover {
+      gap: 12px;
+    }
+
+    .hero-brand.visible,
+    .hero-tagline.visible,
+    .hero-subtext.visible,
+    .hero-ctas.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       PHILOSOPHY SECTION
+    ============================================================ */
+    .filosofia {
+      background: #faf8f5;
+    }
+
+    .filosofia-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .filosofia-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .filosofia-card {
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 40px 32px;
+      background: white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+
+    .filosofia-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    .filosofia-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .filosofia-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: #2d5016;
+      margin-bottom: 14px;
+    }
+
+    .filosofia-card p {
+      color: #555555;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    /* ============================================================
+       PRODUCTS SECTION
+    ============================================================ */
+    .prodotti {
+      background: white;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      background: white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    .product-img-wrap {
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.05);
+    }
+
+    .product-body {
+      padding: 20px;
+    }
+
+    .product-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c8956c;
+      margin-bottom: 8px;
+    }
+
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+    }
+
+    .product-desc {
+      font-size: 0.875rem;
+      color: #555555;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .product-link {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #2d5016;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.3s ease;
+    }
+
+    .product-link:hover {
+      gap: 10px;
+    }
+
+    /* ============================================================
+       FEATURED COLLECTION
+    ============================================================ */
+    .collezione {
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .collezione-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .collezione-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .collezione-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0,0,0,0.75) 0%,
+        rgba(0,0,0,0.45) 60%,
+        rgba(0,0,0,0.3) 100%
+      );
+      z-index: 1;
+    }
+
+    .collezione-content {
+      position: relative;
+      z-index: 2;
+      padding: 80px 24px;
+      max-width: 600px;
+    }
+
+    .collezione-badge {
+      display: inline-block;
+      background: rgba(200, 149, 108, 0.9);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+    }
+
+    .collezione-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: white;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .collezione-subtitle {
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .collezione-stats {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .stat-badge {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 12px;
+      padding: 14px 20px;
+      text-align: center;
+    }
+
+    .stat-number {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 0.05em;
+    }
+
+    /* ============================================================
+       INGREDIENTS SECTION
+    ============================================================ */
+    .ingredienti {
+      background: #faf8f5;
+    }
+
+    .ingredients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 24px;
+    }
+
+    .ingredient-card {
+      background: white;
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .ingredient-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    .ingredient-icon {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .ingredient-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: #2d5016;
+      margin-bottom: 10px;
+    }
+
+    .ingredient-desc {
+      font-size: 0.825rem;
+      color: #555555;
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       JOURNAL SECTION
+    ============================================================ */
+    .giornale {
+      background: white;
+    }
+
+    .journal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .journal-card {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      background: white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .journal-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    .journal-img-wrap {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .journal-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .journal-card:hover .journal-img-wrap img {
+      transform: scale(1.05);
+    }
+
+    .journal-body {
+      padding: 24px;
+    }
+
+    .journal-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c8956c;
+      margin-bottom: 10px;
+    }
+
+    .journal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: #1a1a2e;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .journal-excerpt {
+      font-size: 0.85rem;
+      color: #555555;
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .journal-link {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #2d5016;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.3s ease;
+    }
+
+    .journal-link:hover {
+      gap: 10px;
+    }
+
+    /* ============================================================
+       TESTIMONIALS
+    ============================================================ */
+    .testimonianze {
+      background: #faf8f5;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .testimonials-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .testimonial-card {
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 32px;
+      background: white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    .testimonial-stars {
+      color: #c8956c;
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      letter-spacing: 3px;
+    }
+
+    .testimonial-quote {
+      font-size: 0.95rem;
+      color: #1a1a2e;
+      line-height: 1.75;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #2d5016;
+    }
+
+    .testimonial-city {
+      font-size: 0.8rem;
+      color: #555555;
+      margin-top: 2px;
+    }
+
+    /* ============================================================
+       NEWSLETTER / CONTATTI
+    ============================================================ */
+    .contatti {
+      background: white;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .newsletter-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: 500px;
+    }
+
+    @media (min-width: 768px) {
+      .newsletter-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .newsletter-image {
+      position: relative;
+      min-height: 320px;
+    }
+
+    .newsletter-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .newsletter-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.35) 0%,
+        rgba(0,0,0,0.6) 100%
+      );
+      display: flex;
+      align-items: flex-end;
+      padding: 48px 40px;
+    }
+
+    .newsletter-img-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: white;
+      line-height: 1.25;
+    }
+
+    .newsletter-form-side {
+      background: white;
+      padding: 64px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .newsletter-form-side {
+        padding: 48px 24px;
+      }
+    }
+
+    .newsletter-form-side h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: #1a1a2e;
+      margin-bottom: 12px;
+    }
+
+    .newsletter-form-side p {
+      color: #555555;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #555555;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"] {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid #e8e8e8;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #1a1a2e;
+      background: #faf8f5;
+      transition: border-color 0.3s ease;
+      outline: none;
+    }
+
+    .form-group input[type="text"]:focus,
+    .form-group input[type="email"]:focus {
+      border-color: #2d5016;
+    }
+
+    .form-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .form-checkbox input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: #2d5016;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .form-checkbox label {
+      font-size: 0.825rem;
+      color: #555555;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    .form-checkbox label a {
+      color: #2d5016;
+      font-weight: 500;
+    }
+
+    .form-checkbox label a:hover {
+      text-decoration: underline;
+    }
+
+    .form-success {
+      display: none;
+      background: #f0f7ec;
+      border: 1px solid #b8d9a4;
+      border-radius: 12px;
+      padding: 20px 24px;
+      color: #2d5016;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .form-success.show {
+      display: block;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: #1a1a2e;
+      color: rgba(255,255,255,0.7);
+      padding: 72px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+
+    @media (min-width: 640px) {
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .footer-grid {
+        grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      }
+    }
+
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 0.12em;
+      margin-bottom: 14px;
+    }
+
+    .footer-brand-tagline {
+      font-size: 0.875rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 280px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 14px;
+    }
+
+    .footer-social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.7);
+      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .footer-social-link:hover {
+      background: #c8956c;
+      border-color: #c8956c;
+      color: white;
+    }
+
+    .footer-social-link svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .footer-col-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: white;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.65);
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .footer-contact-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .footer-contact-text {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom-copy {
+      font-size: 0.825rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      font-size: 0.825rem;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.3s ease;
+    }
+
+    .footer-bottom-links a:hover {
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ============================================================
+       UTILITY / MISC
+    ============================================================ */
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: #c8956c;
+      border-radius: 2px;
+      margin: 0 auto 20px;
+    }
+
+    .text-olive { color: #2d5016; }
+    .text-accent { color: #c8956c; }
+    .text-white { color: white; }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav class="nav" id="mainNav" aria-label="Navigazione principale">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo" aria-label="FIORIVIA home">FIORIVIA</a>
+        <ul class="nav-links" id="navLinks" role="list">
+          <li><a href="#filosofia">Filosofia</a></li>
+          <li><a href="#prodotti">Prodotti</a></li>
+          <li><a href="#collezione">Collezione</a></li>
+          <li><a href="#giornale">Giornale</a></li>
+          <li><a href="#contatti">Contatti</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" aria-label="Benvenuta su FIORIVIA">
+    <div class="hero-bg">
+      <img src="./images/hero_botanical.jpg" alt="Botanica italiana — erbe e fiori selvatici" loading="eager" fetchpriority="high" />
+    </div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="hero-brand" id="heroBrand">FIORIVIA</p>
+      <p class="hero-tagline" id="heroTagline">La Bellezza della Natura Italiana</p>
+      <p class="hero-subtext" id="heroSubtext">Formulazioni artigianali ispirate alla tradizione italiana</p>
+      <div class="hero-ctas" id="heroCtas">
+        <a href="#prodotti" class="btn btn-outline-white">Scopri la Collezione</a>
+        <a href="#giornale" class="hero-link">
+          Il Nostro Giornale <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FILOSOFIA
+  ============================================================ -->
+  <section class="section filosofia" id="filosofia" aria-labelledby="filosofiaTitle">
+    <div class="container">
+      <span class="section-label reveal">La Nostra Essenza</span>
+      <h2 class="section-title reveal reveal-delay-1" id="filosofiaTitle">La Nostra Filosofia</h2>
+      <div class="divider reveal reveal-delay-1"></div>
+      <p class="section-subtitle reveal reveal-delay-2">
+        Ogni prodotto FIORIVIA nasce dal rispetto profondo per la natura italiana e per la scienza della bellezza.
+      </p>
+      <div class="filosofia-grid">
+        <div class="filosofia-card reveal reveal-delay-1">
+          <span class="filosofia-icon" aria-hidden="true">🌿</span>
+          <h3>Ingredienti Naturali</h3>
+          <p>Selezioniamo con cura gli ingredienti dalla natura italiana, dalle erbe alpine alle botaniche mediterranee. Ogni materia prima è tracciabile e di provenienza certificata.</p>
+        </div>
+        <div class="filosofia-card reveal reveal-delay-2">
+          <span class="filosofia-icon" aria-hidden="true">♻️</span>
+          <h3>Sostenibilità</h3>
+          <p>Il nostro impegno per l'ambiente si riflette in ogni scelta: packaging riciclabile, produzioni a basso impatto e una filiera rispettosa dell'ecosistema locale.</p>
+        </div>
+        <div class="filosofia-card reveal reveal-delay-3">
+          <span class="filosofia-icon" aria-hidden="true">🏺</span>
+          <h3>Artigianalità</h3>
+          <p>Ogni prodotto è formulato con la cura e la precisione dell'artigianato italiano, rispettando ricette tradizionali tramandate di generazione in generazione.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRODOTTI
+  ============================================================ -->
+  <section class="section prodotti" id="prodotti" aria-labelledby="prodottiTitle">
+    <div class="container">
+      <span class="section-label reveal">Scopri</span>
+      <h2 class="section-title reveal reveal-delay-1" id="prodottiTitle">I Nostri Prodotti</h2>
+      <div class="divider reveal reveal-delay-1"></div>
+      <p class="section-subtitle reveal reveal-delay-2">Formulazioni ispirate alla natura italiana</p>
+      <div class="products-grid">
+        <article class="product-card reveal reveal-delay-1">
+          <div class="product-img-wrap">
+            <img src="./images/pelle_cream.jpg" alt="Cura della Pelle FIORIVIA — crema viso" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <span class="product-tag">Skincare</span>
+            <h3 class="product-name">Cura della Pelle</h3>
+            <p class="product-desc">Sieri, creme e trattamenti per una pelle luminosa e nutrita in profondità.</p>
+            <a href="#" class="product-link">Scopri <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="product-card reveal reveal-delay-2">
+          <div class="product-img-wrap">
+            <img src="./images/corpo_body.jpg" alt="Cura del Corpo FIORIVIA — olio corpo" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <span class="product-tag">Body Care</span>
+            <h3 class="product-name">Cura del Corpo</h3>
+            <p class="product-desc">Oli, scrub e lozioni per una pelle morbida e nutrita dalla testa ai piedi.</p>
+            <a href="#" class="product-link">Scopri <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="product-card reveal reveal-delay-3">
+          <div class="product-img-wrap">
+            <img src="./images/capelli_hair.jpg" alt="Cura dei Capelli FIORIVIA — trattamenti capillari" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <span class="product-tag">Hair Care</span>
+            <h3 class="product-name">Cura dei Capelli</h3>
+            <p class="product-desc">Shampoo, maschere e sieri per capelli forti, brillanti e pieni di vita.</p>
+            <a href="#" class="product-link">Scopri <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="product-card reveal reveal-delay-2">
+          <div class="product-img-wrap">
+            <img src="./images/essenza_oil.jpg" alt="Oli Essenziali FIORIVIA — lavanda e rosmarino" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <span class="product-tag">Oli</span>
+            <h3 class="product-name">Oli Essenziali</h3>
+            <p class="product-desc">Essenze pure di lavanda, rosmarino e bergamotto per mente e corpo.</p>
+            <a href="#" class="product-link">Scopri <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="product-card reveal reveal-delay-3">
+          <div class="product-img-wrap">
+            <img src="./images/benessere_supplements.jpg" alt="Integratori FIORIVIA — benessere naturale" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <span class="product-tag">Wellness</span>
+            <h3 class="product-name">Integratori Benessere</h3>
+            <p class="product-desc">Integratori naturali formulati per sostenere il benessere dall'interno.</p>
+            <a href="#" class="product-link">Scopri <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COLLEZIONE
+  ============================================================ -->
+  <section class="collezione" id="collezione" aria-labelledby="collezioneTitle">
+    <div class="collezione-bg">
+      <img src="./images/selezione_herbarium.jpg" alt="Selezione Herbarium — erboristeria italiana" loading="lazy" />
+    </div>
+    <div class="collezione-overlay" aria-hidden="true"></div>
+    <div class="container">
+      <div class="collezione-content">
+        <span class="collezione-badge reveal">Collezione Esclusiva</span>
+        <h2 class="collezione-title reveal reveal-delay-1" id="collezioneTitle">La Selezione<br>dell'Herbarium</h2>
+        <p class="collezione-subtitle reveal reveal-delay-2">
+          Una cura eccezionale dedicata all'armonia del corpo e della mente. Ispirata all'antica tradizione erboristica italiana, la nostra selezione Herbarium raccoglie le formulazioni più preziose create da FIORIVIA.
+        </p>
+        <div class="collezione-stats reveal reveal-delay-2">
+          <div class="stat-badge">
+            <span class="stat-number">32</span>
+            <span class="stat-label">Ingredienti botanici</span>
+          </div>
+          <div class="stat-badge">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Origine italiana</span>
+          </div>
+        </div>
+        <a href="#prodotti" class="btn btn-accent reveal reveal-delay-3">Esplora la Collezione</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INGREDIENTI
+  ============================================================ -->
+  <section class="section ingredienti" aria-labelledby="ingredientiTitle">
+    <div class="container">
+      <span class="section-label reveal">Purezza &amp; Qualità</span>
+      <h2 class="section-title reveal reveal-delay-1" id="ingredientiTitle">I Nostri Ingredienti</h2>
+      <div class="divider reveal reveal-delay-1"></div>
+      <p class="section-subtitle reveal reveal-delay-2">
+        Selezionati dalla natura italiana e verificati dalla scienza per garantire efficacia e sicurezza.
+      </p>
+      <div class="ingredients-grid">
+        <div class="ingredient-card reveal reveal-delay-1">
+          <span class="ingredient-icon" aria-hidden="true">🫒</span>
+          <h3 class="ingredient-name">Olio d'Oliva</h3>
+          <p class="ingredient-desc">Ricco di vitamina E e antiossidanti, nutre e protegge la pelle in profondità, lasciandola morbida e luminosa.</p>
+        </div>
+        <div class="ingredient-card reveal reveal-delay-2">
+          <span class="ingredient-icon" aria-hidden="true">💜</span>
+          <h3 class="ingredient-name">Lavanda</h3>
+          <p class="ingredient-desc">Con proprietà calmanti e rilassanti, la lavanda italiana purifica la pelle e favorisce il benessere quotidiano.</p>
+        </div>
+        <div class="ingredient-card reveal reveal-delay-3">
+          <span class="ingredient-icon" aria-hidden="true">🌿</span>
+          <h3 class="ingredient-name">Rosmarino</h3>
+          <p class="ingredient-desc">Antiossidante naturale dalle erbe alpine, stimola la circolazione e rafforza capelli e cute con efficacia provata.</p>
+        </div>
+        <div class="ingredient-card reveal reveal-delay-2">
+          <span class="ingredient-icon" aria-hidden="true">🍋</span>
+          <h3 class="ingredient-name">Agrumi</h3>
+          <p class="ingredient-desc">Vitamina C pura dagli agrumi della costiera amalfitana, illumina e uniforma il tono della pelle con naturalezza.</p>
+        </div>
+        <div class="ingredient-card reveal reveal-delay-3">
+          <span class="ingredient-icon" aria-hidden="true">🌱</span>
+          <h3 class="ingredient-name">Aloe Vera</h3>
+          <p class="ingredient-desc">Gel lenitivo e idratante per eccellenza, ideale per calmare le pelli sensibili e ripristinare il naturale equilibrio cutaneo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GIORNALE
+  ============================================================ -->
+  <section class="section giornale" id="giornale" aria-labelledby="giornaleTitle">
+    <div class="container">
+      <span class="section-label reveal">Ispirazioni &amp; Consigli</span>
+      <h2 class="section-title reveal reveal-delay-1" id="giornaleTitle">Il Giornale di Bellezza</h2>
+      <div class="divider reveal reveal-delay-1"></div>
+      <p class="section-subtitle reveal reveal-delay-2">
+        Approfondimenti, guide e storie di bellezza per accompagnarti in ogni gesto quotidiano.
+      </p>
+      <div class="journal-grid">
+        <article class="journal-card reveal reveal-delay-1">
+          <div class="journal-img-wrap">
+            <img src="./images/journal_routine.jpg" alt="Routine skincare quotidiana con prodotti FIORIVIA" loading="lazy" />
+          </div>
+          <div class="journal-body">
+            <span class="journal-tag">Beauty Routine</span>
+            <h3 class="journal-title">La Routine Perfetta per la Tua Pelle</h3>
+            <p class="journal-excerpt">Scopri come costruire una routine skincare efficace con i prodotti FIORIVIA. Ogni passo, ogni gesto, per una pelle radiosa.</p>
+            <a href="#" class="journal-link">Leggi l'articolo <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="journal-card reveal reveal-delay-2">
+          <div class="journal-img-wrap">
+            <img src="./images/journal_niacinamide.jpg" alt="I benefici della niacinamide nella skincare" loading="lazy" />
+          </div>
+          <div class="journal-body">
+            <span class="journal-tag">Ingredienti</span>
+            <h3 class="journal-title">I Benefici della Niacinamide</h3>
+            <p class="journal-excerpt">La niacinamide è uno degli ingredienti più versatili della skincare moderna. Scopri tutti i suoi benefici per la tua pelle.</p>
+            <a href="#" class="journal-link">Leggi l'articolo <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="journal-card reveal reveal-delay-3">
+          <div class="journal-img-wrap">
+            <img src="./images/journal_inci.jpg" alt="Come leggere le etichette INCI dei cosmetici" loading="lazy" />
+          </div>
+          <div class="journal-body">
+            <span class="journal-tag">Guida</span>
+            <h3 class="journal-title">Guida alla Lettura dell'INCI</h3>
+            <p class="journal-excerpt">Impara a leggere l'etichetta dei tuoi prodotti cosmetici. Una guida completa per fare scelte consapevoli.</p>
+            <a href="#" class="journal-link">Leggi l'articolo <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="journal-card reveal reveal-delay-4">
+          <div class="journal-img-wrap">
+            <img src="./images/journal_sunscreen.jpg" alt="Protezione solare — miti e verità" loading="lazy" />
+          </div>
+          <div class="journal-body">
+            <span class="journal-tag">Protezione</span>
+            <h3 class="journal-title">Protezione Solare: Miti e Verità</h3>
+            <p class="journal-excerpt">Sfatiamo i miti sulla protezione solare e scopriamo come proteggere la pelle nel modo giusto tutto l'anno.</p>
+            <a href="#" class="journal-link">Leggi l'articolo <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIANZE
+  ============================================================ -->
+  <section class="section testimonianze" aria-labelledby="testimonianzeTitle">
+    <div class="container">
+      <span class="section-label reveal">Storie Reali</span>
+      <h2 class="section-title reveal reveal-delay-1" id="testimonianzeTitle">Le Nostre Clienti</h2>
+      <div class="divider reveal reveal-delay-1"></div>
+      <p class="section-subtitle reveal reveal-delay-2">
+        La fiducia delle nostre clienti è la nostra più grande soddisfazione.
+      </p>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal reveal-delay-1">
+          <p class="testimonial-stars" aria-label="5 stelle su 5">★★★★★</p>
+          <p class="testimonial-quote">"FIORIVIA ha trasformato completamente la mia routine di bellezza. I prodotti sono di qualità eccezionale e il profumo è divino!"</p>
+          <p class="testimonial-author">Giulia Rossi</p>
+          <p class="testimonial-city">Milano</p>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-2">
+          <p class="testimonial-stars" aria-label="5 stelle su 5">★★★★★</p>
+          <p class="testimonial-quote">"Finalmente una marca italiana che usa ingredienti veri! La crema per il viso è diventata il mio prodotto preferito in assoluto."</p>
+          <p class="testimonial-author">Chiara Bianchi</p>
+          <p class="testimonial-city">Roma</p>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-3">
+          <p class="testimonial-stars" aria-label="5 stelle su 5">★★★★★</p>
+          <p class="testimonial-quote">"Ricevuto il cofanetto regalo e sono rimasta senza parole. Packaging bellissimo, prodotti straordinari. Lo regalo a tutte le amiche!"</p>
+          <p class="testimonial-author">Sofia Ferrari</p>
+          <p class="testimonial-city">Firenze</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       NEWSLETTER / CONTATTI
+  ============================================================ -->
+  <section class="contatti" id="contatti" aria-labelledby="contattiTitle">
+    <div class="newsletter-inner">
+      <div class="newsletter-image">
+        <img src="./images/unisciti_journal.jpg" alt="Unisciti alla comunità FIORIVIA" loading="lazy" />
+        <div class="newsletter-img-overlay">
+          <p class="newsletter-img-text">Unisciti alla<br>Nostra Comunità</p>
+        </div>
+      </div>
+      <div class="newsletter-form-side">
+        <h2 id="contattiTitle">Rimani Aggiornata</h2>
+        <p>Iscriviti alla nostra newsletter per ricevere consigli di bellezza, novità sui prodotti e offerte esclusive direttamente nella tua casella di posta.</p>
+        <form id="newsletterForm" novalidate>
+          <div class="form-group">
+            <label for="formName">Nome</label>
+            <input type="text" id="formName" name="name" placeholder="Il tuo nome" autocomplete="given-name" />
+          </div>
+          <div class="form-group">
+            <label for="formEmail">Email</label>
+            <input type="email" id="formEmail" name="email" placeholder="la.tua@email.it" autocomplete="email" required />
+          </div>
+          <div class="form-checkbox">
+            <input type="checkbox" id="privacyCheck" name="privacy" required />
+            <label for="privacyCheck">
+              Ho letto e accetto la <a href="#">Privacy Policy</a> e acconsento al trattamento dei miei dati personali per ricevere comunicazioni commerciali.
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">Iscriviti Ora</button>
+          <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+            ✓ Grazie per esserti iscritta! Controlla la tua email per confermare l'iscrizione.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" aria-label="Footer FIORIVIA">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div>
+          <p class="footer-brand-name">FIORIVIA</p>
+          <p class="footer-brand-tagline">Formulazioni artigianali ispirate alla tradizione italiana, per una bellezza autentica e consapevole.</p>
+          <div class="footer-socials" aria-label="Social media">
+            <a href="#" class="footer-social-link" aria-label="Instagram FIORIVIA">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="Facebook FIORIVIA">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="Pinterest FIORIVIA">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+            </a>
+          </div>
+        </div>
+        <!-- Prodotti -->
+        <div>
+          <h3 class="footer-col-title">Prodotti</h3>
+          <ul class="footer-links" role="list">
+            <li><a href="#prodotti">Cura della Pelle</a></li>
+            <li><a href="#prodotti">Cura del Corpo</a></li>
+            <li><a href="#prodotti">Cura dei Capelli</a></li>
+            <li><a href="#prodotti">Oli Essenziali</a></li>
+            <li><a href="#prodotti">Integratori</a></li>
+          </ul>
+        </div>
+        <!-- Informazioni -->
+        <div>
+          <h3 class="footer-col-title">Informazioni</h3>
+          <ul class="footer-links" role="list">
+            <li><a href="#filosofia">Chi Siamo</a></li>
+            <li><a href="#filosofia">La Nostra Filosofia</a></li>
+            <li><a href="#">Ingredienti</a></li>
+            <li><a href="#giornale">Il Giornale</a></li>
+            <li><a href="#">Sostenibilità</a></li>
+          </ul>
+        </div>
+        <!-- Contatti -->
+        <div>
+          <h3 class="footer-col-title">Contatti</h3>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon" aria-hidden="true">✉</span>
+            <span class="footer-contact-text">info@fiorivia.it</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon" aria-hidden="true">☎</span>
+            <span class="footer-contact-text">+39 02 1234 5678</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon" aria-hidden="true">📍</span>
+            <span class="footer-contact-text">Via della Natura, 12<br>20121 Milano, Italia</span>
+          </div>
+        </div>
+      </div>
+      <!-- Bottom bar -->
+      <div class="footer-bottom">
+        <p class="footer-bottom-copy">© 2024 FIORIVIA S.r.l. — Tutti i diritti riservati</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Termini di Servizio</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ── Page fade-in ────────────────────────────────────────────
+      window.addEventListener('load', function () {
+        document.body.classList.add('loaded');
+      });
+
+      // ── Nav scroll behaviour ─────────────────────────────────────
+      var nav = document.getElementById('mainNav');
+      function handleNavScroll() {
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }
+      window.addEventListener('scroll', handleNavScroll, { passive: true });
+
+      // ── Mobile hamburger ─────────────────────────────────────────
+      var hamburger = document.getElementById('hamburger');
+      var navLinks  = document.getElementById('navLinks');
+
+      function openMenu() {
+        navLinks.classList.add('open');
+        hamburger.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      hamburger.addEventListener('click', function () {
+        if (navLinks.classList.contains('open')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      // Close on nav link click
+      navLinks.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      // Close on outside click
+      document.addEventListener('click', function (e) {
+        if (
+          navLinks.classList.contains('open') &&
+          !navLinks.contains(e.target) &&
+          !hamburger.contains(e.target)
+        ) {
+          closeMenu();
+        }
+      });
+
+      // ── Hero staggered animation ──────────────────────────────────
+      var heroElements = [
+        document.getElementById('heroBrand'),
+        document.getElementById('heroTagline'),
+        document.getElementById('heroSubtext'),
+        document.getElementById('heroCtas')
+      ];
+
+      var delays = [0, 200, 400, 600];
+
+      // Use prefers-reduced-motion
+      var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReducedMotion) {
+        heroElements.forEach(function (el) {
+          if (el) el.classList.add('visible');
+        });
+      } else {
+        document.addEventListener('DOMContentLoaded', function () {
+          heroElements.forEach(function (el, i) {
+            if (!el) return;
+            setTimeout(function () {
+              el.classList.add('visible');
+            }, delays[i]);
+          });
+        });
+
+        // Fallback: if DOMContentLoaded already fired
+        if (document.readyState !== 'loading') {
+          heroElements.forEach(function (el, i) {
+            if (!el) return;
+            setTimeout(function () {
+              el.classList.add('visible');
+            }, delays[i]);
+          });
+        }
+      }
+
+      // ── Intersection Observer for scroll reveal ───────────────────
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+
+        document.querySelectorAll('.reveal').forEach(function (el) {
+          observer.observe(el);
+        });
+      } else {
+        // Fallback: make everything visible immediately
+        document.querySelectorAll('.reveal').forEach(function (el) {
+          el.classList.add('visible');
+        });
+      }
+
+      // ── Newsletter form ───────────────────────────────────────────
+      var form    = document.getElementById('newsletterForm');
+      var success = document.getElementById('formSuccess');
+
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var email   = document.getElementById('formEmail');
+          var privacy = document.getElementById('privacyCheck');
+
+          // RFC-compliant subset: local@domain.tld (TLD required, no leading dot)
+          var emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+          if (!email.value || !emailRegex.test(email.value.trim())) {
+            email.focus();
+            email.style.borderColor = '#c0392b';
+            return;
+          }
+
+          if (!privacy.checked) {
+            privacy.focus();
+            return;
+          }
+
+          // Reset any error states
+          email.style.borderColor = '';
+
+          // Hide form fields visually and show success
+          form.querySelectorAll('.form-group, .form-checkbox, button[type="submit"]').forEach(function (el) {
+            el.style.display = 'none';
+          });
+
+          if (success) {
+            success.classList.add('show');
+          }
+        });
+      }
+
+    }());
+  </script>
+
+</body>
 </html>
